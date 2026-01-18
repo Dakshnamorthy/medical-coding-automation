@@ -24,7 +24,7 @@ def analyze_text(input: MedicalTextInput):
     icd_df = load_icd_codes()
     cpt_df = load_cpt_codes()
 
-    analyzer = AnalyzerAgent(icd_df, cpt_df)
+    analyzer = AnalyzerAgent()
     analysis_result = analyzer.analyze(input.text)
 
     validator = ValidatorAgent()

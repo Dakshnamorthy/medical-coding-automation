@@ -2,32 +2,27 @@ import ConfidenceBar from "./ConfidenceBar";
 
 export default function ResultCard({ title, codes }) {
   return (
-    <div className="mt-6">
-      <h2 className="text-xl font-semibold mb-3">{title}</h2>
+    <div className="card">
+      <div className="section-title">{title}</div>
 
       {codes.length === 0 && (
-        <p className="text-sm text-gray-500">
-          No codes detected.
-        </p>
+        <div className="empty">No codes detected</div>
       )}
 
-      {codes.map((code, index) => (
-        <div
-          key={index}
-          className="
-            border 
-            border-gray-200 
-            p-4 
-            mb-3 
-            rounded-lg 
-            bg-gray-50
-          "
-        >
-          <p className="font-medium text-gray-800">
-            {code.code} — {code.description}
-          </p>
+      {codes.map((item, index) => (
+        <div className="result-item" key={index}>
+          <div className="code-row">
+            <span className="code">{item.code}</span>
+            <span className="confidence-badge">
+              {item.confidence}%
+            </span>
+          </div>
 
-          <ConfidenceBar value={code.confidence} />
+          <div className="description">
+            {item.description}
+          </div>
+
+          <ConfidenceBar value={item.confidence} />
         </div>
       ))}
     </div>
